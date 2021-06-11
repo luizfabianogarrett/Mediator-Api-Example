@@ -21,7 +21,7 @@ namespace Application.Handler
             _personService = personService;
             _mediator = mediator;
         }
-        public async Task<string> Handle(NewPersonCommand request, CancellationToken cancellationToken)
+        public async Task<object> Handle(NewPersonCommand request, CancellationToken cancellationToken)
         {
             var id = await _personService.Save(request);
             
@@ -33,15 +33,15 @@ namespace Application.Handler
                     Date = DateTime.Now
                 });
 
-            return new { id }.ToString();
+            return new { id };
         }
 
-        public Task<string> Handle(EditPersonCommand request, CancellationToken cancellationToken)
+        public Task<object> Handle(EditPersonCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> Handle(DeletePersonCommand request, CancellationToken cancellationToken)
+        public Task<object> Handle(DeletePersonCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

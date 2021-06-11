@@ -7,6 +7,7 @@ using Domain_Example.Repository;
 using Domain_Example.Service;
 using Domain_Example.Validator;
 using FluentValidation;
+using Mediator_Api_Example.Filter;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,7 +38,9 @@ namespace Mediator_Api_Example
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             #endregion
 
+
             #region Scoped
+            services.AddScoped<CustomFilter>();
             services.AddScoped<IRepository<Person>, PersonRepositoryMemory>();
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<IDomainNotificationContext, DomainNotificationContext>();

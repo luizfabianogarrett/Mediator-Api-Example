@@ -1,5 +1,4 @@
 ﻿using Domain_Example.Command;
-using Domain_Example.Notification.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -10,10 +9,8 @@ namespace Mediator_Api_Example.Controllers
     [Route("[controller]")]
     public class PersonController : ApplicationController
     {
-        
         private readonly IMediator _mediator;
-
-        public PersonController(IMediator mediator, IDomainNotificationContext notificationContext) : base(notificationContext)
+        public PersonController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -22,9 +19,6 @@ namespace Mediator_Api_Example.Controllers
         public async Task<IActionResult> Post(NewPersonCommand command)
         {
             var response = await _mediator.Send(command);
-            if (HasErrorNotifications)
-                return new BadRequestObjectResult(GetErrorNotifications);
-
             return Ok(response);
         }
 

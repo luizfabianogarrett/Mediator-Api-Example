@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
-    <ProjectReference Include="..\Domain-Example\Domain-Example.csproj" />
+    <ProjectReference Include="..\Domain-Example\Domain.csproj" />
     <ProjectReference Include="..\Repository.Memory\Repository.Memory.csproj" />
   </ItemGroup>
 
